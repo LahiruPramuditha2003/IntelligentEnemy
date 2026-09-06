@@ -243,11 +243,24 @@ Rather than loading large binary `.wav` or `.mp3` files that could fail to load 
 ### 4.1 Uniform Discrete Policy Formulation
 
 The action space $A$ contains 6 discrete behaviors:
-$$A = \{ \text{MOVE\_LEFT}, \; \text{MOVE\_RIGHT}, \; \text{JUMP}, \; \text{SPEED\_UP}, \; \text{SLOW\_DOWN}, \; \text{STAY} \}$$
 
-The Random Agent ([random.js](file:///c:/Users/lahir/Desktop/Attempt2/js/ai/random.js)) implements a uniform stochastic policy $\pi_{\text{random}}$:
+$$
+A = \{
+\mathrm{MOVE\_LEFT},
+\mathrm{MOVE\_RIGHT},
+\mathrm{JUMP},
+\mathrm{SPEED\_UP},
+\mathrm{SLOW\_DOWN},
+\mathrm{STAY}
+\}
+$$
 
-$$\pi(a \mid s) = \frac{1}{|A|} = \frac{1}{6} \approx 0.1667 \quad \forall a \in A, \; \forall s \in S$$
+The Random Agent (`random.js`) implements a uniform stochastic policy $\pi_{\mathrm{random}}$:
+
+$$
+\pi(a \mid s) = \frac{1}{|A|} = \frac{1}{6} \approx 0.1667
+\quad \forall a \in A,\; \forall s \in S
+$$
 
 ### 4.2 Why Baselines are Mandatory in AI Research
 
@@ -387,9 +400,19 @@ A table of 864 entries fits completely in CPU cache, updates in nanoseconds, and
 
 ### 6.4 The Bellman Optimality Equation
 
-The value of an action is defined as the expected sum of discounted future rewards under an optimal policy $\pi^*$:
+The value of an action is defined as the expected sum of discounted future rewards under an optimal policy $\pi^\star$:
 
-$$Q^*(s, a) = \mathbb{E} \left[ R_{t+1} + \gamma \max_{a'} Q^*(S_{t+1}, a') \;\Big|\; S_t = s, A_t = a \right]$$
+$$
+Q^\star(s, a) =
+\mathbb{E}
+\left[
+R_{t+1}
++
+\gamma \max_{a'} Q^\star(S_{t+1}, a')
+\mid
+S_t = s,\; A_t = a
+\right]
+$$
 
 The discount factor $\gamma = 0.90$ ensures that immediate survival is valued more than survival 50 steps into the distant future ($\gamma^k \to 0$ as $k \to \infty$).
 
