@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stone Drop — An AI learning game where an enemy learns to dodge falling stones using reinforcement learning and neural networks.">
+    <title>Stone Drop — AI Enemy Learning Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <h1 id="gameTitle">Stone Drop</h1>
+        <p id="subtitle">Drop stones. Defeat the enemy. Watch it learn.</p>
+
+        <div id="controls">
+            <div class="control-group">
+                <label for="brainSelector">AI Brain:</label>
+                <select id="brainSelector">
+                    <option value="random">Random (Baseline)</option>
+                    <option value="heuristic">Heuristic (Rule-Based)</option>
+                    <option value="qlearning">Q-Learning (Tabular RL)</option>
+                    <option value="dqn">DQN (Deep Neural Network)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="speedSelector">Speed:</label>
+                <select id="speedSelector">
+                    <option value="1">1x (Normal)</option>
+                    <option value="2">2x (Fast)</option>
+                    <option value="5">5x (Turbo)</option>
+                </select>
+            </div>
+
+            <div id="aiActions" class="control-group">
+                <button id="btnFastTrain" class="btn secondary" title="Fast-forward 25 training rounds">⚡ Fast Train (25 Rounds)</button>
+                <button id="btnResetAI" class="btn danger" title="Clear learned Q-Table">↺ Reset AI Memory</button>
+                <button id="btnSoundToggle" class="btn" title="Toggle audio effects">🔊 Sound: ON</button>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="aiDashboard" class="dashboard-panel">
+            <div class="stat-card">
+                <span class="stat-label">Exploration (ε):</span>
+                <span id="statEpsilon" class="stat-value">N/A</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">States / Replay:</span>
+                <span id="statStates" class="stat-value">N/A</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Episodes Trained:</span>
+                <span id="statEpisodes" class="stat-value">N/A</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">TD Updates:</span>
+                <span id="statUpdates" class="stat-value">N/A</span>
+            </div>
+        </div>
+
+        <div id="info">
+            <p>Click anywhere above the ground to drop a stone. Switch to <strong>Q-Learning</strong> to watch the enemy learn to dodge over time!</p>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
