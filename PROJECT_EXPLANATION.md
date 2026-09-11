@@ -215,6 +215,14 @@ $$\text{Pupil } X = X_{\text{visorCenter}} + \text{Offset Ratio} \times \left(\f
 
 If the Euclidean distance $d = \sqrt{(x_s - x_e)^2 + (y_s - y_e)^2} < 160\text{ px}$, the visor's glow color shifts dynamically from calm cyan (`#00d8d6`) to emergency crimson (`#ff3838`) using canvas shadow filters (`ctx.shadowColor`).
 
+Each frame, particles experience aerodynamic drag and downward acceleration:
+
+$$v_{x, t + \Delta t} = v_{x, t} \cdot 0.96$$
+
+$$v_{y, t + \Delta t} = v_{y, t} + g_{\text{particle}} \cdot \Delta t$$
+
+$$\text{Opacity } \alpha = \max\left(0, \frac{\text{Life}_{\text{remaining}}}{\text{Life}_{\text{initial}}}\right)$$
+
 ### 3.3 Particle Simulation (Drag, Gravity, Alpha Decay)
 
 Upon enemy defeat, [effects.js](file:///c:/Users/lahir/Desktop/Attempt2/js/effects.js) spawns 40 radial particles. Each particle $i$ is initialized with a random angle $\theta \sim \mathcal{U}(0, 2\pi)$ and initial speed $v_0 \sim \mathcal{U}(80, 340)\text{ px/s}$:
