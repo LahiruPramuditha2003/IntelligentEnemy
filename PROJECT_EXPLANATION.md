@@ -209,31 +209,30 @@ Drawing onto an HTML5 Canvas 2D context is an immediate-mode rendering operation
 The enemy droid is equipped with an animated eye/visor that tracks the nearest falling stone.
 
 Given the enemy center coordinates $(x_e, y_e)$ and nearest stone coordinates $(x_s, y_s)$:
+
 $$\Delta x = x_s - x_e$$
-$$\text{Offset Ratio} = \text{clamp}\left(\frac{\Delta x}{200}, \; -1.0, \; +1.0\right)$$
+
+$$\text{Offset Ratio} = \text{clamp}\left(\frac{\Delta x}{200}, -1.0, +1.0\right)$$
+
 $$\text{Pupil } X = X_{\text{visorCenter}} + \text{Offset Ratio} \times \left(\frac{W_{\text{visor}}}{2} - r_{\text{pupil}}\right)$$
 
 If the Euclidean distance $d = \sqrt{(x_s - x_e)^2 + (y_s - y_e)^2} < 160\text{ px}$, the visor's glow color shifts dynamically from calm cyan (`#00d8d6`) to emergency crimson (`#ff3838`) using canvas shadow filters (`ctx.shadowColor`).
-
-Each frame, particles experience aerodynamic drag and downward acceleration:
-
-$$v_{x, t + \Delta t} = v_{x, t} \cdot 0.96$$
-
-$$v_{y, t + \Delta t} = v_{y, t} + g_{\text{particle}} \cdot \Delta t$$
-
-$$\text{Opacity } \alpha = \max\left(0, \frac{\text{Life}_{\text{remaining}}}{\text{Life}_{\text{initial}}}\right)$$
 
 ### 3.3 Particle Simulation (Drag, Gravity, Alpha Decay)
 
 Upon enemy defeat, [effects.js](file:///c:/Users/lahir/Desktop/Attempt2/js/effects.js) spawns 40 radial particles. Each particle $i$ is initialized with a random angle $\theta \sim \mathcal{U}(0, 2\pi)$ and initial speed $v_0 \sim \mathcal{U}(80, 340)\text{ px/s}$:
 
 $$v_{x,0} = \cos(\theta) \cdot v_0$$
+
 $$v_{y,0} = \sin(\theta) \cdot v_0 - 60 \quad \text{(upward bias)}$$
 
 Each frame, particles experience aerodynamic drag and downward acceleration:
-$$v_{x, t+\Delta t} = v_{x,t} \cdot 0.96$$
-$$v_{y, t+\Delta t} = v_{y,t} + g_{\text{particle}} \cdot \Delta t$$
-$$\text{Opacity } \alpha = \max\left(0, \; \frac{\text{Life}_{\text{remaining}}}{\text{Life}_{\text{initial}}}\right)$$
+
+$$v_{x, t + \Delta t} = v_{x,t} \cdot 0.96$$
+
+$$v_{y, t + \Delta t} = v_{y,t} + g_{\text{particle}} \cdot \Delta t$$
+
+$$\text{Opacity } \alpha = \max\left(0, \frac{\text{Life}_{\text{remaining}}}{\text{Life}_{\text{initial}}}\right)$$
 
 ### 3.4 Procedural Web Audio Synthesizer
 
