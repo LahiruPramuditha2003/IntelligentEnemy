@@ -570,7 +570,8 @@ By the multivariate chain rule:
 $$\vec{\delta}^{[l]} = \left( (W^{[l+1]})^T \vec{\delta}^{[l+1]} \right) \odot g'^{[l]}(\vec{z}^{[l]})$$
 
 where the derivative of ReLU is the step function:
-$$\text{ReLU}'(z_j) = \begin{cases} 1 & \text{if } z_j > 0 \\ 0 & \text{if } z_j \le 0 \end{cases}$$
+
+$$\text{ReLU}'(z_j) = \begin{cases}  1 & \text{if } z_j > 0 \\  0 & \text{if } z_j \le 0  \end{cases}$$
 
 #### Parameter Gradients:
 The partial derivatives with respect to weights and biases are:
